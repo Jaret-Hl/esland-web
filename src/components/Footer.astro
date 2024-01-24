@@ -1,11 +1,17 @@
 ---
 import Logo from "@/components/Logo.astro"
 import Link from "@/components/Link.astro"
+import { getLangFromUrl, useTranslations, useTranslatedPath } from "@/i18n/utils"
 
 import { getI18N } from "@/i18n/index"
 
 const { currentLocale } = Astro
 const i18n = getI18N({ currentLocale })
+
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
 
 <footer class="bg-black/40">
@@ -19,7 +25,7 @@ const i18n = getI18N({ currentLocale })
           <Logo class="h-auto w-24" />
         </a>
         <div class="mt-6 flex justify-center gap-x-4">
-          <a href="#" class="text-white hover:text-primary duration-300">
+          <a href="https://twitter.com/PremiosESLAND" class="text-white hover:text-primary duration-300">
             <svg
               class="size-6"
               aria-hidden="true"
@@ -34,7 +40,7 @@ const i18n = getI18N({ currentLocale })
             </svg>
             <span class="sr-only">Twitter</span>
           </a>
-          <a href="#" class="text-white hover:text-primary duration-300">
+          <a href="https://www.instagram.com/premiosesland/" class="text-white hover:text-primary duration-300">
             <svg
               class="size-6"
               xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +55,7 @@ const i18n = getI18N({ currentLocale })
             >
             <span class="sr-only">Instagram</span>
           </a>
-          <a href="#" class="text-white hover:text-primary duration-300">
+          <a href="https://www.reddit.com/r/premiosESLAND/" class="text-white hover:text-primary duration-300">
             <svg
               class="size-6"
               xmlns="http://www.w3.org/2000/svg"
@@ -73,26 +79,26 @@ const i18n = getI18N({ currentLocale })
           <ul class="flex flex-col gap-2 font-medium text-gray-400">
             <li>
               <Link
-                href="/aviso-legal"
+                href={translatePath('/aviso-legal/')}
                 class="hover:underline hover:text-primary duration-300"
                 >
-                {i18n.FOOTER.LEGAL.NOTICE}
+                {t('nav.legal')}
               </Link>
             </li>
             <li>
               <Link
-                href="/privacidad"
+                href={translatePath('/privacidad/')}
                 class="hover:underline hover:text-primary duration-300"
                 >
-                {i18n.FOOTER.LEGAL.PRIVACY}
+                {t('nav.privacidad')}
               </Link>
             </li>
             <li>
               <Link
-                href="/cookies"
+                href={translatePath('/cookies/')}
                 class="hover:underline hover:text-primary duration-300"
               >
-                {i18n.FOOTER.LEGAL.COOKIES}
+                {t('nav.cookies')}
               </Link>
             </li>
           </ul>
@@ -104,26 +110,26 @@ const i18n = getI18N({ currentLocale })
           <ul class="flex flex-col gap-2 font-medium text-gray-400">
             <li>
               <Link
-                href="/"
+                href={translatePath('/')}
                 class="hover:underline hover:text-primary duration-300"
                 >
-                {i18n.FOOTER.WEB_MAP.HOME}
+                {t('nav.inicio')}
               </Link>
             </li>
             <li>
               <Link
-                href="/info"
+                href={translatePath('/info/')}
                 class="hover:underline hover:text-primary duration-300"
                 >
-                {i18n.FOOTER.WEB_MAP.INFO}
+                {t('nav.info')}
             </Link>
             </li>
             <li>
               <Link
-                href="/archivo"
+                href={translatePath('/archivo/')}
                 class="hover:underline hover:text-primary duration-300"
                 >
-                {i18n.FOOTER.WEB_MAP.ARCHIVE}
+                {t('nav.archivo')}
               </Link>
             </li>
           </ul>
